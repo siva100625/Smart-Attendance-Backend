@@ -1,0 +1,33 @@
+package com.example.smart_attendance.controller;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import com.example.smart_attendance.service.AuthService;
+import com.example.smart_attendance.dto.*;
+
+@RestController
+@RequestMapping("/api/auth")
+@RequiredArgsConstructor
+@CrossOrigin("*")
+public class AuthController {
+
+    private final AuthService authService;
+
+    @PostMapping("/register")
+    public String register(
+            @RequestBody RegisterRequest request) {
+        authService.register(request);
+        return "User registered successfully";
+    }
+
+    @PostMapping("/login")
+    public AuthResponse login(
+            @RequestBody LoginRequest request) {
+        return authService.login(request);
+    }
+    @GetMapping("/test")
+    public String test() {
+        return "JWT Working!";
+    }
+
+}
