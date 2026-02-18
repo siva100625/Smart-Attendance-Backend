@@ -47,9 +47,7 @@ public class OAuth2SuccessHandler
 
         String role = userOptional.get().getRole().name();
 
-        response.sendRedirect(
-                "http://localhost:5173/oauth-success?token="
-                        + token + "&role=" + role
-        );
+        response.sendRedirect("https://smart-attendance-frontend-wj7i.vercel.app/oauth-success?token=" + token + "&role=" + role);
+
     }
 }
