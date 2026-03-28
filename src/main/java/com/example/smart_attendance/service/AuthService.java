@@ -37,7 +37,7 @@ public class AuthService {
 
     public AuthResponse login(LoginRequest request) {
 
-        // 1️⃣ Authenticate user
+        //  Authenticate user
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -45,15 +45,15 @@ public class AuthService {
                 )
         );
 
-        // 2️⃣ Load user from database
+        //  Load user from database
         User user = userRepository
                 .findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // 3️⃣ Generate JWT
+        //  Generate JWT
         String token = jwtUtil.generateToken(user.getEmail());
 
-        // 4️⃣ Return token + role
+        //  Return token + role
         return new AuthResponse(token, user.getRole().name());
     }
 
