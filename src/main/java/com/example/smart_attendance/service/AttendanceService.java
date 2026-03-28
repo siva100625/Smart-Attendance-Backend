@@ -34,7 +34,7 @@ public class AttendanceService {
         Course course = courseRepository.findById(courseId)
                 .orElseThrow(() -> new RuntimeException("Course not found"));
 
-        // ✅ Check faculty owns this course
+        //  Check faculty owns this course
         if (!course.getFaculty().getId().equals(facultyId)) {
             throw new RuntimeException("You are not assigned to this course");
         }
@@ -42,7 +42,7 @@ public class AttendanceService {
         User student = userRepository.findById(studentId)
                 .orElseThrow(() -> new RuntimeException("Student not found"));
 
-        // ✅ Check student enrolled
+        //  Check student enrolled
         if (!enrollmentRepository.existsByStudentAndCourse(student, course)) {
             throw new RuntimeException("Student not enrolled in this course");
         }
@@ -111,7 +111,7 @@ public class AttendanceService {
 
             String status = percentage >= 75 ? "GOOD" : "LOW";
 
-            // 🔥 SEND EMAIL IF BELOW 75
+            //  SEND EMAIL IF BELOW 75
             if (percentage < 75) {
                 emailService.sendLowAttendanceMail(
                         student.getEmail(),
