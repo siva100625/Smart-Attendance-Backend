@@ -23,7 +23,7 @@ public class StudentAttendanceController {
     private final UserRepository userRepository;
     private final CourseService courseService;
 
-    // ✅ 0️⃣ Get all courses for the logged-in student
+    // Get all courses for the logged-in student
     @PreAuthorize("hasRole('STUDENT')")
     @GetMapping("/courses")
     public List<Course> getStudentCourses(@AuthenticationPrincipal UserDetails userDetails) {
@@ -32,7 +32,7 @@ public class StudentAttendanceController {
 
         return courseService.getCoursesByStudentId(student.getId());
     }
-    // ✅ 1️⃣ Get full attendance list for a specific course
+    //  Get full attendance list for a specific course
     @PreAuthorize("hasRole('STUDENT')")
     @GetMapping("/{courseId}")
     public List<Attendance> getStudentAttendance(
@@ -45,7 +45,7 @@ public class StudentAttendanceController {
         return attendanceService.getStudentAttendance(student.getId(), courseId);
     }
 
-    // ✅ 2️⃣ Get attendance percentage for a specific course
+    //  Get attendance percentage for a specific course
     @PreAuthorize("hasRole('STUDENT')")
     @GetMapping("/{courseId}/percentage")
     public double getAttendancePercentage(
