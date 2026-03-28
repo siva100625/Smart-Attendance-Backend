@@ -99,7 +99,7 @@ public class UserService {
         List<Course> courses = courseRepository.findByFacultyId(id);
 
         for (Course course : courses) {
-            attendanceRepository.deleteByCourseId(course.getId());  // 🔥 delete attendance first
+            attendanceRepository.deleteByCourseId(course.getId());  //  delete attendance first
             enrollmentRepository.deleteByCourseId(course.getId());  // then enrollments
         }
 
