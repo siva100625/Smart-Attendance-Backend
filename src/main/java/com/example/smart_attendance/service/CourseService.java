@@ -21,7 +21,7 @@ public class CourseService {
     private final EnrollmentRepository enrollmentRepository;
     private final AttendanceRepository attendanceRepository;
 
-    // 1️⃣ Create Course
+    //  Create Course
     public Course createCourse(String name, String code) {
 
         Course course = new Course();
@@ -31,7 +31,7 @@ public class CourseService {
         return courseRepository.save(course);
     }
 
-    // 2️⃣ Assign Faculty to Course
+    //  Assign Faculty to Course
     public Course assignFaculty(Long courseId, Long facultyId) {
 
         Course course = courseRepository.findById(courseId)
@@ -57,10 +57,10 @@ public class CourseService {
         return courseRepository.findByFaculty_Id(facultyId);
     }
 
-    // ✅ Get students enrolled in course (secure check)
+    // Get students enrolled in course (secure check)
     public List<User> getStudentsByCourseAndFaculty(Long courseId, Long facultyId) {
 
-        // 🔐 Verify course belongs to this faculty
+        //  Verify course belongs to this faculty
         Course course = courseRepository
                 .findByIdAndFacultyId(courseId, facultyId)
                 .orElseThrow(() ->
