@@ -25,9 +25,6 @@ public class AuthController {
             @RequestBody LoginRequest request) {
         return authService.login(request);
     }
-    @GetMapping("/test")
-    public String test() {
-        return "JWT Working!";
-    }
+
 
 }
